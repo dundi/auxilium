@@ -3,7 +3,7 @@
 client_id = "e4ee144f63e55743e3eacaf686243fd9"
 name = "auxilium"
 handle = "auxilium-2"
-application_url = "https://gods-grave-action-recommended.trycloudflare.com"
+application_url = "https://healthcare-continuing-editorials-involves.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://gods-grave-action-recommended.trycloudflare.com/auth/callback",
-  "https://gods-grave-action-recommended.trycloudflare.com/auth/shopify/callback",
-  "https://gods-grave-action-recommended.trycloudflare.com/api/auth/callback"
+  "https://healthcare-continuing-editorials-involves.trycloudflare.com/auth/callback",
+  "https://healthcare-continuing-editorials-involves.trycloudflare.com/auth/shopify/callback",
+  "https://healthcare-continuing-editorials-involves.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
