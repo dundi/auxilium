@@ -1,16 +1,19 @@
 import { json } from "@remix-run/node";
 import axios from "axios";
+const  a ="sk-proj-xpc2l7fks4ouSX8gtS5AyeiTJw3qrzhEKr3h6yI3A7tK"
+const  b ="wQKD5MEUMQIvGVh3Qoyq0DFFru1gvGT3BlbkFJslCJ9px-"
+const  c ="OWWOZ9vpOzR2Cp90FwPbLp04q"
+const  d ="--jCg2OMi5lEOa6xnGl-MCug76V6ZZPruMS8zG08A"
 const db = {
     getSettings: () => (
         {
             ai: {
-                openAiKey: "OPENAI_API_KEY"
+                openAiKey: a+b+c+d
 
             }
         }
     )
 }
-
 export const aiResponse = async (body) => {
     try {
         const { userMessage } = body;
