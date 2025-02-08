@@ -4,7 +4,7 @@ const db = {
     getSettings: () => (
         {
             ai: {
-                openAiKey: "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"
+                openAiKey: "OPENAI_API_KEY"
 
             }
         }
