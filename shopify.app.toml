@@ -3,7 +3,7 @@
 client_id = "e4ee144f63e55743e3eacaf686243fd9"
 name = "auxilium"
 handle = "auxilium-2"
-application_url = "https://spider-coordinates-myanmar-korean.trycloudflare.com"
+application_url = "https://evaluations-duo-bearing-cups.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://spider-coordinates-myanmar-korean.trycloudflare.com/auth/callback",
-  "https://spider-coordinates-myanmar-korean.trycloudflare.com/auth/shopify/callback",
-  "https://spider-coordinates-myanmar-korean.trycloudflare.com/api/auth/callback"
+  "https://evaluations-duo-bearing-cups.trycloudflare.com/auth/callback",
+  "https://evaluations-duo-bearing-cups.trycloudflare.com/auth/shopify/callback",
+  "https://evaluations-duo-bearing-cups.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
