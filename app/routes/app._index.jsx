@@ -107,7 +107,7 @@ export default function Index() {
     }
   }, [productId, shopify]);
   const generateProduct = () => fetcher.submit({}, { method: "POST" });
-
+ console.log('Richiesta ricevuta su /api/test');
   return (
       <Layout>
         <Page title="Dashboard">
