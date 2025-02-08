@@ -29,7 +29,7 @@ export const aiResponse = async (body) => {
         const temperature = parseFloat(settings.ai.temperature);
 
         const dataOpenAi = {
-            model: "gpt-4o",
+            model: "gpt-4o-mini",
             messages: [
                 { role: "system", content: "Rispondi in modo professionale." },
                 { role: "user", content: userMessage },
