@@ -1,19 +1,10 @@
 import { json } from "@remix-run/node";
 import axios from "axios";
 import { keys } from "../../.secret"
+import { db } from "../service/db";
+
 // Usa variabili d'ambiente per maggiore sicurezza
 const openAiKey = keys.openAiKey
-
-const db = {
-    getSettings: async () => ({
-        ai: { openAiKey },
-        color: "red",
-        language: "uk",
-    }),
-    saveSettings: async (settings) => {
-        console.log("✅ Salvataggio delle impostazioni:", settings);
-    }
-};
 
 export const action = async ({ request }) => {
     try {
