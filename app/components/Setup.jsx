@@ -8,9 +8,10 @@ import {
     Button,
     FormLayout,
 } from "@shopify/polaris";
-import { aiResponse } from "../service/responseai";
+import { useFetcher } from "@remix-run/react";
 
 const SetupPage = () => {
+    const fetcher = useFetcher();
     const [formData, setFormData] = useState({
         welcomeMessage: "",
         aiLogo: "",
@@ -29,6 +30,15 @@ const SetupPage = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (fetcher.data && fetcher.data.aiResponse) {
+            setFormData((prevState) => ({
+                ...prevState,
+                aiResponse: fetcher.data.aiResponse,
+            }));
+        }
+    }, [fetcher.data]);
+
     const handleSaveSettings = () => {
         localStorage.setItem("setupFormData", JSON.stringify(formData));
         console.log("Impostazioni salvate", formData);
@@ -38,21 +48,12 @@ const SetupPage = () => {
         setFormData((prevState) => ({ ...prevState, [field]: value }));
     };
 
-    async function responseai() {
-        try {
-            const response = await aiResponse(formData.userMessage);
-            setFormData((prevState) => ({
-                ...prevState,
-                aiResponse: response,
-            }));
-        } catch (error) {
-            console.error("Errore nella generazione della risposta AI:", error);
-            setFormData((prevState) => ({
-                ...prevState,
-                aiResponse: "Errore nella generazione della risposta AI",
-            }));
-        }
-    }
+    const generateResponse = () => {
+        fetcher.submit(
+            { userMessage: formData.userMessage },
+            { method: "POST", action: "/responseai" }
+        );
+    };
 
     return (
         <Page title="⚙️ Auxilium - Impostazioni">
@@ -119,7 +120,7 @@ const SetupPage = () => {
                                 onChange={handleChange("userMessage")}
                                 placeholder="Scrivi una richiesta per l'AI..."
                             />
-                            <Button primary onClick={responseai}>
+                            <Button primary onClick={generateResponse}>
                                 📝 Genera Risposta AI
                             </Button>
                             <p><strong>Risposta AI:</strong></p>

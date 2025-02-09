@@ -3,7 +3,7 @@
 client_id = "e4ee144f63e55743e3eacaf686243fd9"
 name = "auxilium"
 handle = "auxilium-2"
-application_url = "https://hints-creation-smithsonian-evaluate.trycloudflare.com"
+application_url = "https://options-gardens-lb-hampton.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://hints-creation-smithsonian-evaluate.trycloudflare.com/auth/callback",
-  "https://hints-creation-smithsonian-evaluate.trycloudflare.com/auth/shopify/callback",
-  "https://hints-creation-smithsonian-evaluate.trycloudflare.com/api/auth/callback"
+  "https://options-gardens-lb-hampton.trycloudflare.com/auth/callback",
+  "https://options-gardens-lb-hampton.trycloudflare.com/auth/shopify/callback",
+  "https://options-gardens-lb-hampton.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
