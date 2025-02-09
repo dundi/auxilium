@@ -3,7 +3,7 @@
 client_id = "e4ee144f63e55743e3eacaf686243fd9"
 name = "auxilium"
 handle = "auxilium-2"
-application_url = "https://options-gardens-lb-hampton.trycloudflare.com"
+application_url = "https://resolution-breed-number-placement.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://options-gardens-lb-hampton.trycloudflare.com/auth/callback",
-  "https://options-gardens-lb-hampton.trycloudflare.com/auth/shopify/callback",
-  "https://options-gardens-lb-hampton.trycloudflare.com/api/auth/callback"
+  "https://resolution-breed-number-placement.trycloudflare.com/auth/callback",
+  "https://resolution-breed-number-placement.trycloudflare.com/auth/shopify/callback",
+  "https://resolution-breed-number-placement.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
