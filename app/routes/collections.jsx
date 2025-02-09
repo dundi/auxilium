@@ -8,12 +8,3 @@ export const loader = async ({ request }) => {
   const { admin } = await authenticate.admin(request);
   return await collectionsLoader(admin)
 };
-
-export default function CollectionsRoute() {
-  const collections = useLoaderData();
-  return (
-    <div>
-      <CollectionsList collections={collections} />
-    </div>
-  );
-}

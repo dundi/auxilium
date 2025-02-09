@@ -15,7 +15,7 @@ import { useNavigate } from "@remix-run/react";
 import { HeaderDashboard } from "./HeaderDashboard";
 import SetupPage from "./Setup";
 import { StatisticsCard } from "./StatisticsCard";
-import { NewsCard } from "./NewsCard";
+import CollectionsList from "./CollectionsList";
 
 function LayoutApp() {
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ function LayoutApp() {
             case "dashboard":
                 return <StatisticsCard />;
             case "collections":
-                return <NewsCard />;
+                return <CollectionsList />;
             case "products":
                 return <p>Gestione prodotti in arrivo...</p>;
             default:

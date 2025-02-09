@@ -1,22 +1,44 @@
-import React from 'react';
+import React, { Suspense } from "react";
+import { useCollections } from "../hooks/CollectionsData";
 
-function CollectionsList({ collections }) {
-  if (!collections || collections.length === 0) {
-    return <div>Nessuna collezione trovata.</div>;
-  }
-
+// Componente per visualizzare un messaggio di errore
+function ErrorFallback({ error }) {
   return (
-    <div>
-      <h2>Lista delle Collezioni</h2>
-      <ul>
-        {collections.map(collection => (
-          <li key={collection.id}>
-            <strong>{collection.title}</strong> - Handle: {collection.handle}
-          </li>
-        ))}
-      </ul>
+    <div style={{ color: "red" }}>
+      Errore durante il recupero delle collections: {error.message}
     </div>
   );
 }
 
-export default CollectionsList;
+// Componente principale CollectionsList
+export default function CollectionsList() {
+  return (
+    <div>
+      <h2>Lista delle Collezioni</h2>
+      <Suspense
+        fallback={<div>Caricamento delle collections...</div>} // Fallback durante il caricamento
+        onError={(error) => (
+          <ErrorFallback error={error} /> // Gestione degli errori
+        )}
+      >
+        {/* Componente interno per visualizzare le collections */}
+        <CollectionDisplay />
+      </Suspense>
+    </div>
+  );
+}
+
+// Componente interno per visualizzare le collections
+function CollectionDisplay() {
+  const collections = useCollections(); // Usa l'hook per ottenere i dati
+
+  return (
+    <ul>
+      {collections.map((collection) => (
+        <li key={collection.id}>
+          <strong>{collection.title}</strong> - Handle: {collection.handle}
+        </li>
+      ))}
+    </ul>
+  );
+}
