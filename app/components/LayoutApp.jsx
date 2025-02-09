@@ -15,7 +15,7 @@ import { useNavigate } from "@remix-run/react";
 import { HeaderDashboard } from "./HeaderDashboard";
 import SetupPage from "./Setup";
 import { StatisticsCard } from "./StatisticsCard";
-import { Collections } from "./collections";
+import { Collections } from "./Collections";
 
 function LayoutApp() {
     const navigate = useNavigate();
