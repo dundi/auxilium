@@ -1,9 +1,8 @@
 import { json } from "@remix-run/node";
 import axios from "axios";
-
+import { keys } from "../../.secret"
 // Usa variabili d'ambiente per maggiore sicurezza
-const openAiKey = "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"//process.env.OPENAI_API_KEY;
-
+const openAiKey = keys.openAiKey
 
 const db = {
     getSettings: async () => ({
