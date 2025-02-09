@@ -30,7 +30,19 @@ export default function CollectionsList() {
 
 // Componente interno per visualizzare le collections
 function CollectionDisplay() {
-  const collections = useCollections(); // Usa l'hook per ottenere i dati
+  const { collections, error, isLoading } = useCollections(); // Usa l'hook corretto
+
+  if (isLoading) {
+    return <p>Caricamento delle collezioni...</p>;
+  }
+
+  if (error) {
+    return <p>Errore: {error.message}</p>;
+  }
+
+  if (collections.length === 0) {
+    return <p>Nessuna collezione disponibile.</p>;
+  }
 
   return (
     <ul>

@@ -3,7 +3,7 @@
 client_id = "e4ee144f63e55743e3eacaf686243fd9"
 name = "auxilium"
 handle = "auxilium-2"
-application_url = "https://resolution-breed-number-placement.trycloudflare.com"
+application_url = "https://toddler-mid-colour-boss.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://resolution-breed-number-placement.trycloudflare.com/auth/callback",
-  "https://resolution-breed-number-placement.trycloudflare.com/auth/shopify/callback",
-  "https://resolution-breed-number-placement.trycloudflare.com/api/auth/callback"
+  "https://toddler-mid-colour-boss.trycloudflare.com/auth/callback",
+  "https://toddler-mid-colour-boss.trycloudflare.com/auth/shopify/callback",
+  "https://toddler-mid-colour-boss.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
