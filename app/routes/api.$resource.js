@@ -1,13 +1,14 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { authenticate } from "../shopify.server";
-import { collectionsLoader } from "../service/collections";
+import { collectionsLoader, getMissingCategories } from "../service/collections";
 import { productsGroupLoader, productsLoader} from "../service/products";
 
 const loaders = {
   collections: collectionsLoader,
   products: productsLoader,
-  productsGroup: productsGroupLoader
+  productsGroup: productsGroupLoader,
+  missingCategory: getMissingCategories
 };
 
 export const loader = async ({ request, params }) => {

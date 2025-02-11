@@ -6,7 +6,7 @@ const variables = (first, after) =>({
 })
 	
 export const productsLoader = async (admin ) => {
-  const response = await admin.graphql(PRODUCT_ALL, variables(first, after));
+  const response = await admin.graphql(PRODUCT_ALL, variables(250, null));
   const result = await response.json();
   const data = result.data.products.edges.map(edge => edge.node);
   return json(data);

@@ -69,7 +69,7 @@ export const PRODUCT_ALL = `query GetAllProducts($first: Int!, $after: String) {
             }
           }
         }
-        metafields(first: 20) {
+        metafields(first: 250) {
           edges {
             node {
               namespace
@@ -98,7 +98,7 @@ export const GET_GROUPED_PRODUCTS_QUERY = `
           title
           productType
           tags
-          metafields(first: 20) {
+          metafields(first: 250) {
             edges {
               node {
                 namespace
@@ -128,6 +128,93 @@ export const UPDATE_VARIANT_MUTATION = `
         price
         barcode
         createdAt
+      }
+    }
+  }
+`;
+
+export const CREATE_METAFIELD_MUTATION = `
+  mutation createMetafield($productId: ID!, $namespace: String!, $key: String!, $value: String!) {
+    metafieldUpsert(
+      input: {
+        ownerId: $productId
+        namespace: $namespace
+        key: $key
+        value: $value
+        type: STRING
+      }
+    ) {
+      metafield {
+        id
+        namespace
+        key
+        value
+      }
+    }
+  }
+`;
+
+export const CREATE_PRODUCT_CATEGORY_MUTATION = `
+  mutation createProductCategory($category: String!, $tag: String!) {
+    productUpdate(input: { 
+      productType: $category 
+      tags: [$tag] 
+    }) {
+      product {
+        id
+        title
+        productType
+        tags
+      }
+    }
+  }
+`;
+
+export const GET_PRODUCT_QUERY = `
+  query getProduct($id: ID!) {
+    product(id: $id) {
+      id
+      title
+      handle
+      productType
+      tags
+      metafields(first: 250) {
+        edges {
+          node {
+            id
+            namespace
+            key
+            value
+            type
+          }
+        }
+      }
+      variants(first: 10) {
+        edges {
+          node {
+            id
+            title
+            price
+            barcode
+            createdAt
+            sku
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_ALL_CATEGORIES_QUERY = `
+  query getAllCategories {
+    products(first: 250) {
+      edges {
+        node {
+          id
+          title
+          productType
+          tags
+        }
       }
     }
   }
