@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 
 // Hook personalizzato per il fetching delle collections
-export function useCollections() {
+export function useCollections(isMissing) {
   const [collections, setCollections] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true); // Stato di caricamento
-
+  
+  const apiUrl = isMissing ? '/api/missingCategory' : '/api/collections';
+  
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const response = await fetch("/collections"); // Chiamata API alla route /collections
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error("Impossibile recuperare le collections");
         }

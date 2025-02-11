@@ -5,15 +5,16 @@ import { GET_ALL_CATEGORIES_QUERY, GET_PRODUCT_QUERY } from "./query/products"; 
 
 // Funzione per caricare le collezioni
 export const collectionsLoader = async (admin) => {
-  const collections =getCollections(admin)
+  const collections =await getCollections(admin)
+  // console.log('collectionsLoader',collections )
   return json(collections);
 };
-
 
 // Funzione per caricare le collezioni
 const getCollections = async (admin) => {
   const response = await admin.graphql(GET_COLLECTIONS_QUERY);
   const result = await response.json();
+  // console.log('getCollections',result.data )
   const collections = result.data.collections.edges.map(edge => edge.node);
   return collections
 };
@@ -23,10 +24,10 @@ export const collectionsMissingLoader = async (admin ) => {
     const existingCategoriesInProducts = await getExistingCategoriesInProducts(admin);
     
      const categoriesData = await getCollections(admin);
-    console.log("Categorie esistenti:", categoriesData);
+    // console.log("Categorie esistenti:", categoriesData);
 
     const missingCategories = getMissingCategoriesInProducts( categoriesData, existingCategoriesInProducts);
-    console.log("Categorie mancanti:", missingCategories);
+    // console.log("Categorie mancanti:", missingCategories);
 
     return json(missingCategories);
   } catch (error) {
