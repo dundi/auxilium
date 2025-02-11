@@ -3,38 +3,58 @@ import { json } from '@remix-run/node';
 import { GET_COLLECTIONS_QUERY } from "./query/collections"; // Importa la query
 import { GET_ALL_CATEGORIES_QUERY, GET_PRODUCT_QUERY } from "./query/products"; // Importa le query per ottenere categorie e prodotti
 
-export const collectionsLoader = async (admin ) => {
+// Funzione per caricare le collezioni
+export const collectionsLoader = async (admin) => {
   const response = await admin.graphql(GET_COLLECTIONS_QUERY);
   const result = await response.json();
   const collections = result.data.collections.edges.map(edge => edge.node);
   return json(collections);
 };
 
+export const collectionsMissingLoader = async (admin, categoriesData) => {
+  try {
+    const existingCategories = await getExistingCategoriesInProducts(admin);
+    console.log("Categorie esistenti:", existingCategories);
+
+    const missingCategories = await getMissingCategoriesInProducts(existingCategories, categoriesData);
+    console.log("Categorie mancanti:", missingCategories);
+
+    return missingCategories;
+  } catch (error) {
+    console.error("Errore nel caricamento delle categorie mancanti:", error);
+    return json({ error: "Errore nel recupero delle categorie mancanti" }, { status: 500 });
+  }
+};
+
 // Funzione per ottenere tutte le categorie esistenti in Shopify
-export const getExistingCategories = async (admin) => {
+const getExistingCategoriesInProducts = async (admin) => {
   const response = await admin.graphql(GET_ALL_CATEGORIES_QUERY);
   const result = await response.json();
-  console.log('xxxxxxx', result.data)
-  if (!result || !result.data || !result.data.productTypes) {
+
+  if (!result || !result.data || !result.data.products) {
     throw new Error("Errore nel recupero delle categorie esistenti");
   }
-  
-  // Estrai le categorie esistenti
-  const existingCategories = result.data.productTypes.map(category => category.name);
+
+  const products = result.data.products.edges.map(edge => edge.node);
+
+  // Estrai solo i valori unici di `productType`
+  const existingCategories = [...new Set(products.map(product => product.productType).filter(Boolean))];
+
   return existingCategories;
 };
 
 // Funzione per verificare quali categorie non esistono su Shopify
-export const getMissingCategories = async (admin, categoriesData) => {
-  const existingCategories = await getExistingCategories(admin);
-  const missingCategories = [];
+const getMissingCategoriesInProducts = async (existingCategories, categoriesData) => {
+  // Assicuriamoci che `categoriesData` sia un array
+  if (!Array.isArray(categoriesData)) {
+    throw new Error("categoriesData deve essere un array");
+  }
 
-  // Scorri tutte le categorie nel JSON parziale
-  Object.keys(categoriesData).forEach(categoryName => {
-    if (!existingCategories.includes(categoryName)) {
-      missingCategories.push(categoryName); // Aggiungi le categorie non esistenti
-    }
-  });
+  //console.log('Categorie esistenti:', existingCategories);
+  //console.log('Categorie fornite:', categoriesData);
+
+  // Confronta `categoriesData` con `existingCategories`
+  const missingCategories = categoriesData.filter(category => !existingCategories.includes(category));
 
   return missingCategories;
 };
@@ -55,6 +75,5 @@ export const getProduct = async (admin, productId) => {
 
 // Funzione principale per ottenere le categorie mancanti
 export const getMissingCategoriesForProducts = async (admin, categoriesData) => {
-  const missingCategories = await getMissingCategories(admin, categoriesData);
-  return missingCategories;
+  return await collectionsMissingLoader(admin, categoriesData);
 };
