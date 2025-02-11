@@ -3,7 +3,7 @@
 client_id = "e4ee144f63e55743e3eacaf686243fd9"
 name = "auxilium"
 handle = "auxilium-2"
-application_url = "https://boots-troy-february-malta.trycloudflare.com"
+application_url = "https://communications-gadgets-restore-decade.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://boots-troy-february-malta.trycloudflare.com/auth/callback",
-  "https://boots-troy-february-malta.trycloudflare.com/auth/shopify/callback",
-  "https://boots-troy-february-malta.trycloudflare.com/api/auth/callback"
+  "https://communications-gadgets-restore-decade.trycloudflare.com/auth/callback",
+  "https://communications-gadgets-restore-decade.trycloudflare.com/auth/shopify/callback",
+  "https://communications-gadgets-restore-decade.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
